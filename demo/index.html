@@ -28,10 +28,10 @@
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            border: 2px solid #333; /* Darker border for the title */
-            border-radius: 8px; /* Rounded corners */
+            border: 2px solid #333;
+            border-radius: 8px;
             padding: 10px;
-            background-color: #e0e0e0; /* Slightly darker background for the title */
+            background-color: #e0e0e0;
             width: 85%
         }
 
@@ -49,9 +49,10 @@
         }
 
         .legend {
-            margin: 20px;
-            font-size: 18px;
+            margin: 10px;
+            font-size: 16px;
             text-align: center;
+            font-weight: bold;
         }
 
         .video-container {
@@ -63,7 +64,7 @@
         }
 
         .video-player {
-            width: 23%; /* ADJUSTED FOR 4 COLUMNS: Ensures four players fit side-by-side */
+            width: 23%; /* Default for 4 columns */
             margin: 10px;
             display: flex;
             flex-direction: column;
@@ -76,71 +77,16 @@
             height: fit-content;
         }
 
-        .video-player-large {
-            width: 80%; /* Adjusted width for better spacing */
-            margin: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            height: fit-content;
+        /* Specific override for the 3-column GT tab */
+        #tabGT .video-player {
+            width: 30%; 
         }
 
         .video-player video {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: contain;
             border-bottom: 1px solid #ddd;
-        }
-
-        /* --- Preference Containers (Unused in this 4-column layout, but kept for style compatibility) --- */
-        .preference-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px auto;
-        }
-        .preference-option {
-            margin-right: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            border: 2px solid #2E7D32;
-            border-radius: 4px;
-            padding: 8px;
-        }
-        .preference-radio {
-            margin: 0 8px;
-            font-size: 18px;
-        }
-        #nextButton {
-            margin-top: 5px;
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-        }
-        #nextButton:hover {
-            background-color: #45a049;
-        }
-        #nextButton:disabled {
-            background-color: #ddd;
-            color: #666;
-            cursor: not-allowed;
-        }
-        /* --- END Preference Containers --- */
-
-        /* Additional styles for better readability and spacing */
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            margin-bottom: 5px;
         }
 
         .container-flex {
@@ -171,22 +117,12 @@
             width: 45%;
         }
 
-        #leftVideoPlayer, #rightVideoPlayer {
-            object-fit: cover;
-            width: 100%;
-        }
-
-        .leftVideoPlayer-dimensions, .rightVideoPlayer-dimensions {
-            height: 600;
-        }
-
         .top-onglet {
             margin-bottom: 20px;
         }
 
         .nav-item {
-            margin-left: 10px;
-            margin-right: 10px;
+            margin: 0 10px;
             border-radius: 10px;
         }
 
@@ -195,59 +131,10 @@
             height: inherit;
         }
 
-        /* Default values for larger screens */
-        .video-player {
-            height: 450px;
-        }
-
-        .video-player-large {
-            height: 250px;
-        }
-
-        @media screen and (max-width: 1920px) {
-            .video-player {
-                height: 450px;
-            }
-            .video-player-large {
-                height: 250px;
-            }
-        }
-
-        @media screen and (max-width: 1440px) {
-            .video-player {
-                height: 400px;
-            }
-            .video-player-large {
-                height: 200px;
-            }
-        }
-
-        @media screen and (max-width: 1200px) {
-            .video-player {
-                height: 350px;
-            }
-            .video-player-large {
-                height: 150px;
-            }
-        }
-
         @media screen and (max-width: 768px) {
-            .video-player {
-                /* On small screens, allow only two videos per row */
-                width: 45%; 
-                height: 200px;
-            }
-            .video-player-large {
-                height: 100px;
-            }
-
-            .description-container,
-            .container-flex {
-                width: 95%;
-            }
-
-            .description-container-alternate {
-                width: 100%;
+            .video-player, #tabGT .video-player {
+                width: 95%; 
+                height: auto;
             }
         }
     </style>
@@ -260,9 +147,7 @@
     
     <div class="container-flex">
         <div class="description-container-alternate">
-            <div class="subtitle">
-                Key Information:
-            </div>
+            <div class="subtitle">Key Information:</div>
             <div class="instruction">
                 Author: Adela Barbulescu <br/><br/>
                 Core Method : FastLips <br/><br/>
@@ -270,131 +155,142 @@
         </div>
 
         <div class="description-container-alternate">
-            <div class="subtitle">
-                FastLips + MediaPipe
-            </div>
+            <div class="subtitle">FastLips + MediaPipe</div>
             <div class="instruction">
-                This demo showcases the continuation of work on FastLips, focusing on extending visual data from monocular videos using MediaPipe. Results are displayed for FastLips postnet and aperture spreading + postnet versions and Ground Truth (GT) animation/video data.
+                This demo showcases the continuation of work on FastLips, focusing on extending visual data from monocular videos using MediaPipe.
             </div>
         </div>
     </div>
     
     <div class="description-container">
         <div class="subtitle">
-            Demonstration Samples (4-Column Comparison)
-        </div>
-        <div class="instruction">
-            Compare the four versions: FastLips postnet, FastLips A&S, Animation GT, and Video GT.
+            Demonstration Samples
         </div>
 
         <ul class="nav nav-tabs top-onglet" id="myTabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Key Examples</a>
+                <a class="nav-link active" id="tabGT-tab" data-toggle="tab" href="#tabGT" role="tab" aria-selected="true">GT Avatars</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Tab 2 </a>
+                <a class="nav-link" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-selected="false">Key Examples</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-selected="false">Tab 2</a>
             </li>
         </ul>
         
         <div class="tab-content" id="myTabsContent">
-            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+            
+            <div class="tab-pane fade show active" id="tabGT" role="tabpanel" aria-labelledby="tabGT-tab">
+                <div class="instruction" style="text-align: center; font-weight: bold;">
+                    Ground Truth comparison across Woman, Girl, and Man avatars (5 Stimuli).
+                </div>
                 
+                <div class="video-container">
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0001_woman.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 1: Woman</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0001_girl.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 1: Girl</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0001_man.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 1: Man</div>
+                    </div>
+
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0002_woman.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 2: Woman</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0002_girl.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 2: Girl</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0002_man.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 2: Man</div>
+                    </div>
+
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0003_woman.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 3: Woman</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0003_girl.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 3: Girl</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0003_man.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 3: Man</div>
+                    </div>
+
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0004_woman.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 4: Woman</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0004_girl.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 4: Girl</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0004_man.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 4: Man</div>
+                    </div>
+
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0005_woman.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 5: Woman</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0005_girl.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 5: Girl</div>
+                    </div>
+                    <div class="video-player">
+                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0005_man.mp4" type="video/mp4"></video>
+                        <div class="legend">TEST 5: Man</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
                 <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="pill" href="#pill1" role="tab">Example 1: </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#pill2" role="tab">Example 2: </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#pill1">Example 1</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#pill2">Example 2</a></li>
                 </ul>
-
                 <div class="tab-content">
-                    
                     <div class="tab-pane fade show active" id="pill1" role="tabpanel">
-                        <div class="instruction">
-                            DIVERS_PARL_AD_01_0005_40: Ce n'est pas la même chose d'être étudiant ou senior que d'avoir un mode de vie différent.
-                        </div>
-
+                        <div class="instruction">DIVERS_PARL_AD_01_0005_40: Ce n'est pas la même chose d'être étudiant ou senior...</div>
                         <div class="video-container">
-                            
                             <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas1_postnet.mp4" type="video/mp4">
-                                </video>
+                                <video class="video-js" controls preload="auto"><source src="videos/cas1_postnet.mp4" type="video/mp4"></video>
                                 <div class="legend">FastLips</div>
                             </div>
-                            
                             <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas1_AS.mp4" type="video/mp4">
-                                </video>
-                                <div class="legend" style="color: darkgreen; font-weight: bold;">FastLips A&S</div>
+                                <video class="video-js" controls preload="auto"><source src="videos/cas1_AS.mp4" type="video/mp4"></video>
+                                <div class="legend" style="color: darkgreen;">FastLips A&S</div>
                             </div>
-                            
                             <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas1_animGT.mp4" type="video/mp4">
-                                </video>
+                                <video class="video-js" controls preload="auto"><source src="videos/cas1_animGT.mp4" type="video/mp4"></video>
                                 <div class="legend">Animation GT</div>
                             </div>
-
                             <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas1_videoGT.mp4" type="video/mp4">
-                                </video>
-                                <div class="legend">Video GT</div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pill2" role="tabpanel">
-                        <div class="instruction">
-                            DIVERS_BOOK_AD_01_0002_113: Et je peux juger de sa grandeur quand il dresse au-dessous des flots.
-                        </div>
-
-                        <div class="video-container">
-                             <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas2_postnet.mp4" type="video/mp4">
-                                </video>
-                                <div class="legend">FastLips</div>
-                            </div>
-                            
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas2_AS.mp4" type="video/mp4">
-                                </video>
-                                <div class="legend" style="color: darkgreen; font-weight: bold;">FastLips A&S</div>
-                            </div>
-                            
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas2_animGT.mp4" type="video/mp4">
-                                </video>
-                                <div class="legend">Animation GT</div>
-                            </div>
-
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto">
-                                    <source src="videos/cas2_videoGT.mp4" type="video/mp4">
-                                </video>
+                                <video class="video-js" controls preload="auto"><source src="videos/cas1_videoGT.mp4" type="video/mp4"></video>
                                 <div class="legend">Video GT</div>
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
             
             <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                 <div class="instruction">
-                     Tab 2
-                 </div>
+                 <div class="instruction">Tab 2 Content</div>
             </div>
         </div>
     </div>
     
     <script>
-        // Video.js initialization (must be after the <video> tags)
         var videoPlayers = document.querySelectorAll('.video-js');
         videoPlayers.forEach(function(player) {
             videojs(player);
