@@ -63,8 +63,9 @@
             width: 100%;
         }
 
+        /* Fixed the height issue for all players */
         .video-player {
-            width: 23%; /* Default for 4 columns */
+            width: 23%; 
             margin: 10px;
             display: flex;
             flex-direction: column;
@@ -74,19 +75,18 @@
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #fff;
-            height: fit-content;
         }
 
-        /* Specific override for the 3-column GT tab */
+        /* 3 columns override for the GT Avatars tab */
         #tabGT .video-player {
             width: 30%; 
         }
 
-        .video-player video {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-bottom: 1px solid #ddd;
+        /* Forces the video to have a visible height */
+        .video-js {
+            width: 100% !important;
+            height: 300px !important; 
+            background-color: #000;
         }
 
         .container-flex {
@@ -122,20 +122,20 @@
         }
 
         .nav-item {
-            margin: 0 10px;
+            margin-left: 10px;
+            margin-right: 10px;
             border-radius: 10px;
         }
 
-        .video-js {
-            width: 100%;
-            height: inherit;
+        @media screen and (max-width: 1200px) {
+            .video-js { height: 250px !important; }
         }
 
         @media screen and (max-width: 768px) {
             .video-player, #tabGT .video-player {
                 width: 95%; 
-                height: auto;
             }
+            .video-js { height: 200px !important; }
         }
     </style>
 </head>
@@ -163,9 +163,7 @@
     </div>
     
     <div class="description-container">
-        <div class="subtitle">
-            Demonstration Samples
-        </div>
+        <div class="subtitle">Demonstration Samples</div>
 
         <ul class="nav nav-tabs top-onglet" id="myTabs" role="tablist">
             <li class="nav-item">
@@ -181,110 +179,53 @@
         
         <div class="tab-content" id="myTabsContent">
             
-            <div class="tab-pane fade show active" id="tabGT" role="tabpanel" aria-labelledby="tabGT-tab">
+            <div class="tab-pane fade show active" id="tabGT" role="tabpanel">
                 <div class="instruction" style="text-align: center; font-weight: bold;">
-                    Ground Truth comparison across Woman, Girl, and Man avatars (5 Stimuli).
+                    Comparison of 3 avatars (Woman, Girl, Man) across the first 5 Test Stimuli.
                 </div>
                 
                 <div class="video-container">
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0001_woman.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 1: Woman</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0001_girl.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 1: Girl</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0001_man.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 1: Man</div>
-                    </div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0001_woman.mp4" type="video/mp4"></video><div class="legend">TEST 1: Woman</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0001_girl.mp4" type="video/mp4"></video><div class="legend">TEST 1: Girl</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0001_man.mp4" type="video/mp4"></video><div class="legend">TEST 1: Man</div></div>
 
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0002_woman.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 2: Woman</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0002_girl.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 2: Girl</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0002_man.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 2: Man</div>
-                    </div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0002_woman.mp4" type="video/mp4"></video><div class="legend">TEST 2: Woman</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0002_girl.mp4" type="video/mp4"></video><div class="legend">TEST 2: Girl</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0002_man.mp4" type="video/mp4"></video><div class="legend">TEST 2: Man</div></div>
 
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0003_woman.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 3: Woman</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0003_girl.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 3: Girl</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0003_man.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 3: Man</div>
-                    </div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0003_woman.mp4" type="video/mp4"></video><div class="legend">TEST 3: Woman</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0003_girl.mp4" type="video/mp4"></video><div class="legend">TEST 3: Girl</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0003_man.mp4" type="video/mp4"></video><div class="legend">TEST 3: Man</div></div>
 
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0004_woman.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 4: Woman</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0004_girl.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 4: Girl</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0004_man.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 4: Man</div>
-                    </div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0004_woman.mp4" type="video/mp4"></video><div class="legend">TEST 4: Woman</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0004_girl.mp4" type="video/mp4"></video><div class="legend">TEST 4: Girl</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0004_man.mp4" type="video/mp4"></video><div class="legend">TEST 4: Man</div></div>
 
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0005_woman.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 5: Woman</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0005_girl.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 5: Girl</div>
-                    </div>
-                    <div class="video-player">
-                        <video class="video-js" controls preload="auto"><source src="resources/TEST_0005_man.mp4" type="video/mp4"></video>
-                        <div class="legend">TEST 5: Man</div>
-                    </div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0005_woman.mp4" type="video/mp4"></video><div class="legend">TEST 5: Woman</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0005_girl.mp4" type="video/mp4"></video><div class="legend">TEST 5: Girl</div></div>
+                    <div class="video-player"><video class="video-js" controls preload="auto"><source src="resources/TEST_0005_man.mp4" type="video/mp4"></video><div class="legend">TEST 5: Man</div></div>
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                <ul class="nav nav-pills">
+            <div class="tab-pane fade" id="tab1" role="tabpanel">
+                <ul class="nav nav-pills mt-3">
                     <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#pill1">Example 1</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#pill2">Example 2</a></li>
                 </ul>
-                <div class="tab-content">
+                <div class="tab-content mt-3">
                     <div class="tab-pane fade show active" id="pill1" role="tabpanel">
-                        <div class="instruction">DIVERS_PARL_AD_01_0005_40: Ce n'est pas la même chose d'être étudiant ou senior...</div>
+                        <div class="instruction">DIVERS_PARL_AD_01_0005_40: Ce n'est pas la même chose...</div>
                         <div class="video-container">
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto"><source src="videos/cas1_postnet.mp4" type="video/mp4"></video>
-                                <div class="legend">FastLips</div>
-                            </div>
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto"><source src="videos/cas1_AS.mp4" type="video/mp4"></video>
-                                <div class="legend" style="color: darkgreen;">FastLips A&S</div>
-                            </div>
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto"><source src="videos/cas1_animGT.mp4" type="video/mp4"></video>
-                                <div class="legend">Animation GT</div>
-                            </div>
-                            <div class="video-player">
-                                <video class="video-js" controls preload="auto"><source src="videos/cas1_videoGT.mp4" type="video/mp4"></video>
-                                <div class="legend">Video GT</div>
-                            </div>
+                            <div class="video-player"><video class="video-js" controls preload="auto"><source src="videos/cas1_postnet.mp4" type="video/mp4"></video><div class="legend">FastLips</div></div>
+                            <div class="video-player"><video class="video-js" controls preload="auto"><source src="videos/cas1_AS.mp4" type="video/mp4"></video><div class="legend" style="color:darkgreen;">FastLips A&S</div></div>
+                            <div class="video-player"><video class="video-js" controls preload="auto"><source src="videos/cas1_animGT.mp4" type="video/mp4"></video><div class="legend">Animation GT</div></div>
+                            <div class="video-player"><video class="video-js" controls preload="auto"><source src="videos/cas1_videoGT.mp4" type="video/mp4"></video><div class="legend">Video GT</div></div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+            <div class="tab-pane fade" id="tab2" role="tabpanel">
                  <div class="instruction">Tab 2 Content</div>
             </div>
         </div>
